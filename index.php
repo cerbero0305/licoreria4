@@ -41,9 +41,21 @@ switch ($page) {
         break;
 
     case 'admin-users':
-        requireAdmin();
+    requireAdmin();
+    $action = $_GET['action'] ?? 'index';
+
+    if ($action === 'create' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        $adminUserController->store();
+    } elseif ($action === 'create') {
+        $adminUserController->create();
+    } elseif ($action === 'edit' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        $adminUserController->update();
+    } elseif ($action === 'edit') {
+        $adminUserController->edit();
+    } else {
         $adminUserController->index();
-        break;
+    }
+    break;
 
     case 'login':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -2,27 +2,35 @@
 // views/pages/admin/users/index.php
 ?>
 <div class="container py-4">
-  <div class="d-flex justify-content-between align-items-center mb-3">
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
     <h4 class="mb-0">Usuarios registrados</h4>
-    <div class="btn-group btn-group-sm" role="group">
-      <a href="<?= BASE_URL ?>/?page=admin-users&tipo=todos"
-         class="btn btn-outline-secondary <?= (!isset($_GET['tipo']) || $_GET['tipo'] === 'todos') ? 'active' : '' ?>">
-        Todos
-      </a>
-      <a href="<?= BASE_URL ?>/?page=admin-users&tipo=clientes"
-         class="btn btn-outline-secondary <?= (($_GET['tipo'] ?? '') === 'clientes') ? 'active' : '' ?>">
-        Clientes
-      </a>
-      <a href="<?= BASE_URL ?>/?page=admin-users&tipo=administradores"
-         class="btn btn-outline-secondary <?= (($_GET['tipo'] ?? '') === 'administradores') ? 'active' : '' ?>">
-        Administradores
-      </a>
-      <a href="<?= BASE_URL ?>/?page=admin-users&tipo=proveedores"
-         class="btn btn-outline-secondary <?= (($_GET['tipo'] ?? '') === 'proveedores') ? 'active' : '' ?>">
-        Proveedores
+
+    <div class="d-flex align-items-center gap-2">
+      <div class="btn-group btn-group-sm me-2" role="group">
+        <a href="<?= BASE_URL ?>/?page=admin-users&tipo=todos"
+           class="btn btn-outline-secondary <?= (!isset($_GET['tipo']) || $_GET['tipo'] === 'todos') ? 'active' : '' ?>">
+          Todos
+        </a>
+        <a href="<?= BASE_URL ?>/?page=admin-users&tipo=clientes"
+           class="btn btn-outline-secondary <?= (($_GET['tipo'] ?? '') === 'clientes') ? 'active' : '' ?>">
+          Clientes
+        </a>
+        <a href="<?= BASE_URL ?>/?page=admin-users&tipo=administradores"
+           class="btn btn-outline-secondary <?= (($_GET['tipo'] ?? '') === 'administradores') ? 'active' : '' ?>">
+          Administradores
+        </a>
+        <a href="<?= BASE_URL ?>/?page=admin-users&tipo=proveedores"
+           class="btn btn-outline-secondary <?= (($_GET['tipo'] ?? '') === 'proveedores') ? 'active' : '' ?>">
+          Proveedores
+        </a>
+      </div>
+
+      <a href="<?= BASE_URL ?>/?page=admin-users&action=create" class="btn btn-primary btn-sm">
+        + Nuevo usuario
       </a>
     </div>
   </div>
+
 
   <?php if (empty($usuarios)): ?>
     <div class="alert alert-info">No se encontraron proveedores.</div>
@@ -70,6 +78,12 @@
             </td>
             <td>
               <small class="text-muted"><?= htmlspecialchars($u['created_at'] ?? '') ?></small>
+            </td>
+            <td>
+              <a href="<?= BASE_URL ?>/?page=admin-users&action=edit&id=<?= $u['id'] ?>"
+                class="btn btn-sm btn-outline-secondary">
+                Editar
+              </a>
             </td>
           </tr>
         <?php endforeach; ?>

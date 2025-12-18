@@ -15,6 +15,48 @@ class User {
         return $stmt->fetch();
     }
 
+    public static function adminUpdate(int $id, array $data) {
+    $pdo = getPDO();
+
+    $baseSql = "
+        UPDATE usuarios
+        SET nombre = ?,
+            dni = ?,
+            telefono = ?,
+            departamento = ?,
+            provincia = ?,
+            distrito = ?,
+            direccion = ?,
+            email = ?,
+            rol = ?,
+            estado = ?
+    ";
+    $params = [
+        $data['nombre'],
+        $data['dni'] ?? null,
+        $data['telefono'] ?? null,
+        $data['departamento'] ?? null,
+        $data['provincia'] ?? null,
+        $data['distrito'] ?? null,
+        $data['direccion'] ?? null,
+        $data['email'],
+        $data['rol'],
+        $data['estado'],
+    ];
+
+    if (!empty($data['password'])) {
+        $baseSql .= ", password_hash = ?";
+        $params[] = password_hash($data['password'], PASSWORD_BCRYPT);
+    }
+
+    $baseSql .= " WHERE id = ?";
+    $params[] = $id;
+
+    $stmt = $pdo->prepare($baseSql);
+    return $stmt->execute($params);
+}
+
+
     public static function create(array $data) {
         $pdo = getPDO();
         $stmt = $pdo->prepare("
