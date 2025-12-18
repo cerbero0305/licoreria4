@@ -17,6 +17,8 @@ require_once __DIR__ . '/controllers/UserController.php';
 require_once __DIR__ . '/controllers/OrderController.php';
 require_once __DIR__ . '/controllers/AdminCategoryController.php';
 require_once __DIR__ . '/controllers/AdminProductController.php';
+require_once __DIR__ . '/controllers/AdminUserController.php';
+
 
 $page   = $_GET['page'] ?? 'home';
 $action = $_GET['action'] ?? 'index';
@@ -28,6 +30,8 @@ $userController    = new UserController();
 $orderController   = new OrderController();
 $adminCategoryController = new AdminCategoryController();
 $adminProductController  = new AdminProductController();
+$adminUserController = new AdminUserController();
+
 
 ob_start();
 
@@ -36,8 +40,9 @@ switch ($page) {
         $productController->home();
         break;
 
-        case 'user':
-        $productController->user();
+    case 'admin-users':
+        requireAdmin();
+        $adminUserController->index();
         break;
 
     case 'login':

@@ -4,7 +4,7 @@
 </main>
 <footer class="bg-dark text-white text-center py-3 mt-4">
     <div class="container">
-        <small>&copy; <?= date('Y') ?> 24 HORAS. Todos los derechos reservados.</small>
+        <small>&copy; <?= date('Y') ?> Licorería Virtual. Todos los derechos reservados.</small>
     </div>
 </footer>
 

@@ -12,11 +12,10 @@
   ☰
 </button>
 
-
     <!-- IZQUIERDA: LOGO -->
     <a class="navbar-brand d-flex align-items-center" href="<?= BASE_URL ?>/?page=home">
       <img src="<?= BASE_URL ?>/assets/img/logo.png" alt="Licorería" width="40" height="40" class="me-2">
-      <span>24 HORAS</span>
+      <span>Licorería Virtual</span>
     </a>
 
     <!-- BOTÓN RESPONSIVE NAVBAR (el de siempre) -->
@@ -60,11 +59,13 @@
               Admin
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+              <li><a class="dropdown-item" href="<?= BASE_URL ?>/?page=admin-users">Usuarios</a></li>
               <li><a class="dropdown-item" href="<?= BASE_URL ?>/?page=admin-categories">Categorías</a></li>
               <li><a class="dropdown-item" href="<?= BASE_URL ?>/?page=admin-products">Productos</a></li>
             </ul>
           </li>
         <?php endif; ?>
+
 
         <!-- Mis compras (solo con sesión activa) -->
         <?php if (isLoggedIn()): ?>
@@ -130,39 +131,6 @@
           🏠 Inicio
         </a>
       </li>
-      
-      <li class="mb-2">
-        <a href="<?= BASE_URL ?>/?page=home" class="text-decoration-none">
-          🏠 Usuario
-        </a>
-      </li>
-
-      <li class="mb-2">
-        <a href="<?= BASE_URL ?>/?page=user" class="text-decoration-none">
-          🏠 Productos
-        </a>
-      </li>
-
-      <li class="mb-2 fw-semibold">📂 Categorías</li>
-      <?php foreach ($categoriasHeader as $cat): ?>
-        <li class="mb-1 ms-3">
-          <a href="<?= BASE_URL ?>/?page=category&id=<?= $cat['id'] ?>" class="text-decoration-none">
-            <?= htmlspecialchars($cat['nombre']) ?>
-          </a>
-        </li>
-      <?php endforeach; ?>
-
-      <li class="mb-2">
-        <a href="<?= BASE_URL ?>/?page=home" class="text-decoration-none">
-          🏠 Clientes
-        </a>
-      </li>
-
-      <li class="mb-2">
-        <a href="<?= BASE_URL ?>/?page=home" class="text-decoration-none">
-          🏠 Proveedores
-        </a>
-      </li>
 
       <hr>
 
@@ -204,16 +172,22 @@
         <hr>
         <li class="mb-2 fw-semibold">⚙️ Administración</li>
         <li class="mb-1 ms-3">
+          <a href="<?= BASE_URL ?>/?page=admin-users" class="text-decoration-none">
+            👥 Usuarios
+          </a>
+        </li>
+        <li class="mb-1 ms-3">
           <a href="<?= BASE_URL ?>/?page=admin-categories" class="text-decoration-none">
-            Categorías
+            📂 Categorías
           </a>
         </li>
         <li class="mb-1 ms-3">
           <a href="<?= BASE_URL ?>/?page=admin-products" class="text-decoration-none">
-            Productos
+            🥃 Productos
           </a>
         </li>
       <?php endif; ?>
+
     </ul>
   </div>
 </div>

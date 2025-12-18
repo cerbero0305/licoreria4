@@ -9,7 +9,7 @@ $categoriasHeader = Category::all();
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>24 HORAS</title>
+    <title>Licorería Virtual</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap 5 -->
